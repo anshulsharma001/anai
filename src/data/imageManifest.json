@@ -1,0 +1,303 @@
+{
+  "brand/logo": {
+    "height": 195,
+    "width": 640
+  },
+  "generated/almond-a": {
+    "generated": true,
+    "height": 536,
+    "width": 374,
+    "widths": [
+      240
+    ]
+  },
+  "generated/almond-b": {
+    "generated": true,
+    "height": 417,
+    "width": 405,
+    "widths": [
+      240
+    ]
+  },
+  "generated/butter-round": {
+    "generated": true,
+    "height": 1827,
+    "width": 1717,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "generated/cashew-a": {
+    "generated": true,
+    "height": 474,
+    "width": 444,
+    "widths": [
+      240
+    ]
+  },
+  "generated/cashew-b": {
+    "generated": true,
+    "height": 480,
+    "width": 459,
+    "widths": [
+      240
+    ]
+  },
+  "generated/crumbs-a": {
+    "generated": true,
+    "height": 444,
+    "width": 476,
+    "widths": [
+      240
+    ]
+  },
+  "generated/crumbs-b": {
+    "generated": true,
+    "height": 415,
+    "width": 393,
+    "widths": [
+      240
+    ]
+  },
+  "generated/diwali-hampers": {
+    "height": 2240,
+    "width": 1792
+  },
+  "generated/festive-table": {
+    "generated": true,
+    "height": 1520,
+    "width": 2688,
+    "widths": [
+      800,
+      1200,
+      1920
+    ]
+  },
+  "generated/piping": {
+    "generated": true,
+    "height": 2240,
+    "width": 1792,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "generated/pistachio-a": {
+    "generated": true,
+    "height": 396,
+    "width": 338,
+    "widths": [
+      240
+    ]
+  },
+  "generated/pistachio-b": {
+    "generated": true,
+    "height": 407,
+    "width": 336,
+    "widths": [
+      240
+    ]
+  },
+  "generated/swirl-almond": {
+    "generated": true,
+    "height": 1603,
+    "width": 1679,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "generated/swirl-cashew": {
+    "generated": true,
+    "height": 1594,
+    "width": 1715,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "hampers/classic-jar": {
+    "generated": true,
+    "height": 1901,
+    "width": 1387,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "hampers/double-delight": {
+    "generated": true,
+    "height": 2117,
+    "width": 1361,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "hampers/royal-3-tier": {
+    "generated": true,
+    "height": 2155,
+    "width": 1044,
+    "widths": [
+      480,
+      800,
+      1044
+    ]
+  },
+  "lifestyle/cookie-stage": {
+    "generated": true,
+    "height": 1744,
+    "width": 2336,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "lifestyle/cookie-stage-cutout": {
+    "generated": true,
+    "height": 1744,
+    "width": 2336,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "products/ajwain-jar": {
+    "generated": true,
+    "height": 2130,
+    "width": 1241,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/badam-swirl-tray": {
+    "generated": true,
+    "height": 1039,
+    "width": 1867,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/butter-kaju-box": {
+    "generated": true,
+    "height": 1158,
+    "width": 1975,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/chocochip-tray": {
+    "generated": true,
+    "height": 2109,
+    "width": 1554,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/classic-crunch-tray": {
+    "generated": true,
+    "height": 1112,
+    "width": 1960,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/coconut-jar": {
+    "generated": true,
+    "height": 1685,
+    "width": 1996,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/coconut-tray": {
+    "generated": true,
+    "height": 2019,
+    "width": 1579,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/dryfruits-box": {
+    "generated": true,
+    "height": 1166,
+    "width": 1934,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/jeera-tray": {
+    "generated": true,
+    "height": 1987,
+    "width": 1367,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/kaju-pista-box": {
+    "generated": true,
+    "height": 1198,
+    "width": 1930,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/kaju-swirl-tray": {
+    "generated": true,
+    "height": 1028,
+    "width": 1956,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/kaju-tray": {
+    "generated": true,
+    "height": 2045,
+    "width": 1492,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "products/triple-treat-box": {
+    "generated": true,
+    "height": 1236,
+    "width": 1879,
+    "widths": [
+      480,
+      800,
+      1200
+    ]
+  }
+}

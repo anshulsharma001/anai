@@ -1,0 +1,716 @@
+@import 'tailwindcss';
+
+/* Wide and tall enough for the layered hero stage; shorter or narrower screens get the stacked hero. */
+@custom-variant stage (@media (width >= 80rem) and (height >= 50rem));
+
+/* ------------------------------------------------------------------
+   Design tokens — palette from the Anai brand identity sheet.
+   *-ink / *-soft variants exist so text meets WCAG AA on cream/brown.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-cream: #fff4dc;
+  --color-cream-deep: #f6e7c8;
+  --color-parchment: #ecd8b2;
+  --color-brown: #4a2a12;
+  --color-brown-deep: #2a170a;
+  --color-roast: #1b110a;
+  --color-brown-soft: #6e5642;
+  --color-amber: #c98a2b;
+  --color-amber-ink: #8f5c14;
+  --color-amber-soft: #e2b467;
+  --color-olive: #5e8c4a;
+  --color-olive-deep: #3f6331;
+  --color-olive-ink: #466b36;
+  --color-sand: #d9c6a5;
+  --color-gold: #c9a45f;
+  /* WhatsApp green, as in the client's reference (a deeper green than WhatsApp's own) */
+  --color-wa: #1e8449;
+
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Jost Variable', 'Jost', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+}
+
+@utility section-y {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+    scrollbar-gutter: stable;
+    background: var(--color-cream);
+    /* Clip on the root too: on phones, body-only clipping still lets wide swipe rows widen the layout viewport. */
+    overflow-x: clip;
+    /* No scroll anchoring: when the collection tabs swap content, the browser would otherwise shift the page to
+       keep some element in place, and the smooth scroller would then fight it. Images all have fixed sizes. */
+    overflow-anchor: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  html.is-locked {
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-brown);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  /* Use even-height (lining) figures everywhere in the display font. */
+  .font-display,
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-variant-numeric: lining-nums;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-brown-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber-ink);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-amber-soft);
+  }
+
+  .on-dark {
+    color: var(--color-cream);
+  }
+
+  dialog {
+    color: inherit;
+  }
+
+  dialog::backdrop {
+    background: rgb(26 14 6 / 0.72);
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+/* Lenis smooth scrolling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@layer components {
+  /* WhatsApp badge: green disc with a white logo, the same on light and dark sections */
+  .wa-badge .wa-badge-disc {
+    fill: var(--color-wa);
+  }
+
+  .wa-badge .wa-badge-glyph {
+    fill: #fff;
+  }
+
+  /* Indian vegetarian mark: green square with a green dot */
+  .veg-mark {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 0.95rem;
+    height: 0.95rem;
+    border: 1.5px solid #1a7f37;
+    border-radius: 2px;
+    background: #fff;
+  }
+
+  .veg-mark::after {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: #1a7f37;
+  }
+
+  /* Typography ---------------------------------------------------- */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow-rule::before {
+    content: '';
+    flex: none;
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.75;
+  }
+
+  .display-hero {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(3.4rem, 9.6vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  @media (min-width: 64rem) {
+    .display-hero {
+      font-size: clamp(4.4rem, 6.9vw, 7rem);
+    }
+  }
+
+  .display-stage {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 10.2vw, 6.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  @media (width >= 48rem) {
+    .display-stage {
+      font-size: clamp(4.5rem, 9.6vw, 7.5rem);
+    }
+  }
+
+  @media (width >= 80rem) and (height >= 50rem) {
+    .display-stage {
+      font-size: min(8.4vw, 15.5vh, 9.5rem);
+    }
+  }
+
+  /* Melts the cover still life into the hero backdrop */
+  .hero-stage-mask {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 32%, #000 70%, transparent),
+      linear-gradient(to bottom, transparent, #000 24%, #000 82%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent, #000 32%, #000 70%, transparent),
+      linear-gradient(to bottom, transparent, #000 24%, #000 82%, transparent);
+    mask-composite: intersect;
+  }
+
+  .display-section {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.2rem, 4.2vw, 4rem);
+    line-height: 1.12;
+    letter-spacing: -0.012em;
+  }
+
+  .display-statement {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3.2vw, 3.25rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+  }
+
+  .display-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 2.6vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.008em;
+  }
+
+  .lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+    line-height: 1.35;
+  }
+
+  .body-copy {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Masked lines for headline reveals; padding keeps italic descenders visible */
+  .line-mask,
+  .split-line-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.24em;
+    margin-bottom: -0.24em;
+  }
+
+  .line-mask > span {
+    display: inline-block;
+  }
+
+  .outline-numeral {
+    font-family: var(--font-display);
+    font-weight: 500;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px currentColor;
+  }
+
+  /* Diamond bullet used across highlight lists (from the catalogue) */
+  .diamond {
+    flex: none;
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-top: 0.55em;
+    transform: rotate(45deg);
+    background: var(--color-amber);
+  }
+
+  /* Buttons ------------------------------------------------------- */
+  .btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition:
+      color 0.45s var(--ease-soft),
+      border-color 0.45s var(--ease-soft),
+      background-color 0.45s var(--ease-soft);
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.55s var(--ease-soft);
+  }
+
+  .btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  .btn .btn-icon {
+    transition: transform 0.45s var(--ease-soft);
+  }
+
+  .btn:hover .btn-icon {
+    transform: translateX(0.25rem);
+  }
+
+  .btn-sm {
+    min-height: 2.75rem;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  .btn-primary {
+    background: var(--color-amber);
+    color: var(--color-brown-deep);
+  }
+
+  .btn-primary::before {
+    background: var(--color-brown-deep);
+  }
+
+  .btn-primary:hover {
+    color: var(--color-cream);
+  }
+
+  .on-dark .btn-primary::before {
+    background: var(--color-cream);
+  }
+
+  .on-dark .btn-primary:hover {
+    color: var(--color-brown-deep);
+  }
+
+  .btn-outline {
+    border-color: rgb(74 42 18 / 0.35);
+    color: var(--color-brown);
+  }
+
+  .btn-outline::before {
+    background: var(--color-brown);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-brown);
+    color: var(--color-cream);
+  }
+
+  .on-dark .btn-outline {
+    border-color: rgb(255 244 220 / 0.4);
+    color: var(--color-cream);
+  }
+
+  .on-dark .btn-outline::before {
+    background: var(--color-cream);
+  }
+
+  .on-dark .btn-outline:hover {
+    border-color: var(--color-cream);
+    color: var(--color-brown-deep);
+  }
+
+  /* Light panels nested inside dark sections (e.g. the enquiry form) */
+  .on-dark .on-light :focus-visible {
+    outline-color: var(--color-amber-ink);
+  }
+
+  .on-dark .on-light .btn-primary::before {
+    background: var(--color-brown-deep);
+  }
+
+  .on-dark .on-light .btn-primary:hover {
+    color: var(--color-cream);
+  }
+
+  .on-dark .on-light .btn-outline {
+    border-color: rgb(74 42 18 / 0.35);
+    color: var(--color-brown);
+  }
+
+  .on-dark .on-light .btn-outline::before {
+    background: var(--color-brown);
+  }
+
+  .on-dark .on-light .btn-outline:hover {
+    border-color: var(--color-brown);
+    color: var(--color-cream);
+  }
+
+  .btn-dark {
+    background: var(--color-brown);
+    color: var(--color-cream);
+  }
+
+  .btn-dark::before {
+    background: var(--color-amber);
+  }
+
+  .btn-dark:hover {
+    color: var(--color-brown-deep);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.45s var(--ease-soft);
+  }
+
+  .link-underline:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  .link-grow {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.45s var(--ease-soft);
+  }
+
+  .link-grow:hover,
+  .group:hover .link-grow,
+  .link-grow[aria-current] {
+    background-size: 100% 1px;
+    background-position: 0 100%;
+  }
+
+  /* Image wells — tonal backdrops echo the catalogue's product pages */
+  .tone-brown {
+    background: radial-gradient(120% 90% at 50% 30%, #5b3618 0%, #2a170a 72%);
+  }
+
+  .tone-olive {
+    background: radial-gradient(120% 90% at 50% 30%, #44612f 0%, #1c2913 74%);
+  }
+
+  .tone-amber {
+    background: radial-gradient(120% 90% at 50% 30%, #8a5a1f 0%, #2f1b0a 74%);
+  }
+
+  .tone-ink {
+    background: radial-gradient(120% 90% at 50% 30%, #3b2616 0%, #170d06 74%);
+  }
+
+  .product-shadow {
+    filter: drop-shadow(0 22px 28px rgb(10 5 2 / 0.45));
+  }
+
+  /* Subtle film grain on textured sections */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.07;
+  }
+
+  .on-dark.grain::after {
+    opacity: 0.05;
+  }
+
+  /* Form controls ---------------------------------------------------- */
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brown-soft);
+  }
+
+  .field-input {
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.6rem 0;
+    border: 0;
+    border-bottom: 1px solid rgb(74 42 18 / 0.3);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-brown);
+    font-size: 1.0625rem;
+    transition: border-color 0.3s var(--ease-soft);
+  }
+
+  .field-input::placeholder {
+    color: rgb(110 86 66 / 0.75);
+  }
+
+  .field-input:hover {
+    border-bottom-color: rgb(74 42 18 / 0.6);
+  }
+
+  .field-input:focus-visible {
+    outline: none;
+    border-bottom-color: var(--color-amber-ink);
+    box-shadow: 0 1px 0 0 var(--color-amber-ink);
+  }
+
+  .field-input[aria-invalid='true'] {
+    border-bottom-color: #a1361b;
+  }
+
+  /* Dropdown in the same underline style, with a small chevron */
+  .field-select {
+    appearance: none;
+    padding-right: 1.75rem;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a2a12' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.15rem center;
+    background-size: 1rem;
+  }
+
+  .field-select:invalid {
+    color: rgb(110 86 66 / 0.75);
+  }
+
+  .field-error {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: #a1361b;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgb(74 42 18 / 0.25);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: var(--color-brown);
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.3s var(--ease-soft),
+      border-color 0.3s var(--ease-soft),
+      color 0.3s var(--ease-soft);
+  }
+
+  .chip:hover {
+    border-color: var(--color-brown);
+  }
+
+  .peer:checked + .chip {
+    background: var(--color-brown);
+    border-color: var(--color-brown);
+    color: var(--color-cream);
+  }
+
+  .peer:focus-visible + .chip {
+    outline: 2px solid var(--color-amber-ink);
+    outline-offset: 2px;
+  }
+
+  /* Hide scrollbars on horizontally scrollable rails while keeping them scrollable */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Floating WhatsApp button: a soft ring pulses now and then */
+@media (prefers-reduced-motion: no-preference) {
+  .wa-float-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--color-wa);
+    animation: wa-pulse 2.8s var(--ease-soft) infinite;
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* Tabbed collections (phones, tablets): packs deal onto the table when a collection first comes into view,
+   and again whenever its tab is opened (the animation applies only to the shown scene, so showing one restarts it). */
+@media (prefers-reduced-motion: no-preference) and (max-width: 63.99rem) {
+  #products:not([data-deal]) [data-scene-collage] :is([data-object], [data-prop]) {
+    opacity: 0;
+  }
+
+  #products[data-deal] [data-shown] [data-scene-collage] :is([data-object], [data-prop]) {
+    animation: deal-in 0.9s var(--ease-soft) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+}
+
+@keyframes deal-in {
+  from {
+    opacity: 0;
+    transform: translateY(60px) rotate(-10deg);
+  }
+}
+
+/* "All" tab cards (phones, tablets): rise in one after another each time the grid opens. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-all-card] {
+    animation: card-in 0.6s var(--ease-soft) both;
+    animation-delay: calc(min(var(--i, 0), 8) * 50ms);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* FAQ answers slide open (browsers without ::details-content simply show them) */
+@media (prefers-reduced-motion: no-preference) {
+  .faq-item {
+    interpolate-size: allow-keywords;
+  }
+
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 0.4s var(--ease-soft),
+      content-visibility 0.4s allow-discrete;
+  }
+
+  .faq-item[open]::details-content {
+    height: auto;
+  }
+}
