@@ -17,8 +17,8 @@ and checkout are deliberately absent: the catalogue lists prices and availabilit
 ## Motion design
 
 - **Preloader:** wordmark reveal with a counter that waits for the hero images (first visit per session only).
-- **Hero:** a pinned scene (screens at least 1280 × 800; shorter or narrower screens get a stacked hero so text never
-  overlaps). Letters rise into place; the cookies rise towards the camera on scroll, with the headline kept in front
+- **Hero:** a pinned scene with floating cookies and nuts on screens of at least 1300 × 700 (700–819 px-tall screens
+  get a wider, shorter copy block with side-by-side buttons so nothing overlaps); smaller screens get a stacked hero. Letters rise into place; the cookies rise towards the camera on scroll, with the headline kept in front
   of them so it stays readable. Gift boxes and floating cookies and nuts drift with the pointer at different depths,
   clear of the copy. The copy block lists the range at a glance (16 products, 5 collections, 200 g – 1 kg packs,
   flexible bulk pricing) with Explore, WhatsApp and Download Catalogue buttons.
@@ -29,6 +29,11 @@ and checkout are deliberately absent: the catalogue lists prices and availabilit
   product as a card, grouped by collection), its packs first, and they deal in each time a tab opens. Single collections share one space, so
   switching between them never moves the page. Scene
   art direction (colours, placements, tilts) lives in `src/data/collectionScenes.js`.
+- **Healthy Range:** 13 cookies (Gud Chana, Multigrain, Atta, Ragi, Bajra, Jowar, Oats, Jaggery, Gur Atta, Millet,
+  Sattu, Besan, Whole Wheat) as a card grid: 2 columns on phones, 3 on tablets, 4 on desktop. Each card shows the
+  pouch photo and switches to its lifestyle photo on hover (mouse) or on tap (touch); that second photo is only
+  downloaded when asked for. Each card has a WhatsApp "Enquire" button, and a green tile at the end enquires about
+  the whole range. Names only: this range is not in the catalogue, so no pack sizes, ingredients or claims are shown.
 - **Chai interlude:** the chai-pour film plays on a muted loop by itself (paused only while off screen) as its
   frame opens to full bleed.
 - **Gifting:** a split opening, with copy beside a Diwali scene of the three gift hampers in an arched frame and a
@@ -65,16 +70,16 @@ npm run lint      # ESLint (includes React Compiler hook rules)
 src/
   components/   Navbar, Footer, Preloader, ScrollProgress, Marquee, Button, FloatingWhatsApp, WhatsAppIcon,
                 SectionHeading, CollectionScene, ProductDetails (dialog), EnquiryForm, ResponsiveImage, Logo, DiamondList
-  sections/     Hero, Manifesto, Collections, ChaiInterlude, Gifting, WhyAnai, BulkOrders, Contact, Faq
+  sections/     Hero, Manifesto, Collections, HealthyRange, ChaiInterlude, Gifting, WhyAnai, BulkOrders, Contact, Faq
   context/      SiteProvider: active collection, open product
   hooks/        useReveal (scroll animation), useActiveSection, useScrolled, useHideOnScroll, useScrollLock,
                 useFocusTrap, useSite
   lib/          gsap setup, Lenis smooth scroll, intro signal, image resolver, enquiry builder, scroll helpers
-  data/         products.js, collectionScenes.js, brand.js, imageManifest.json (generated)
+  data/         products.js, healthyRange.js, collectionScenes.js, brand.js, imageManifest.json (generated)
   assets/images WebP renditions (catalogue extracts and generated imagery)
 public/media/   Films and posters
 public/         Anai-Catalogue.pdf (the "Download Catalogue" file), favicons, og-image.jpg
-tools/          extract_catalogue_assets.py, process_generated_assets.py
+tools/          extract_catalogue_assets.py, process_generated_assets.py, process_healthy_range.py
 ```
 
 ## Editing content
@@ -84,8 +89,11 @@ tools/          extract_catalogue_assets.py, process_generated_assets.py
 - **"Best for" lines and badges:** `bestFor` and `badge` on each product in `src/data/products.js`; they restate
   that catalogue page's highlights.
 - **Contact details, navigation, add-ons, enquiry types:** `src/data/brand.js`.
+- **Healthy Range:** names and photo alt text in `src/data/healthyRange.js`. Add pack sizes or other details only
+  once the client supplies them.
 - **Navigation order** follows the current site: Home, Collection, Gift Hampers, Why Anai, Our Story, Bulk Orders,
-  Contact (`navLinks` in `brand.js`). Seven links need 1280 px; narrower screens use the menu button.
+  Contact (`navLinks` in `brand.js`), with Healthy Range after Collection (17 Nov 2026). The eight links fit from
+  1280 px; narrower screens use the menu button.
 - **Address:** the Delhi registered office, set in `company.address` (12 Nov 2026).
 - **FSSAI:** not shown anywhere on the site (client request, 12 Nov 2026). The number from the Coconut Cookies label
   (23326008002758) is kept in `company.fssaiLicence` in case it is wanted again.
@@ -126,7 +134,7 @@ Copy `.env.example` to `.env` (or set the value in your host):
 - Keyboard-operable collection tabs (arrow keys, Home, End).
 - A native `<dialog>` for product details, laid out so everything shows at once without scrolling (checked for all 16
   products down to a 360 × 740 phone): Escape and backdrop close it, and focus returns to the trigger.
-- The mobile menu has a focus trap and closes with Escape.
+- The mobile menu has a focus trap and closes with Escape. Its link size and spacing follow the screen height, so it fits one screen without scrolling on phones held upright and on tablets.
 - Form errors are announced, with a linked error summary.
 - With reduced motion, all GSAP animation and smooth scrolling are skipped, and every element renders in its
   final position. Scroll reveals only animate opacity and transforms, so content stays focusable and in the

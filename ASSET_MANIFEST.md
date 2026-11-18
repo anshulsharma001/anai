@@ -57,6 +57,14 @@ photos. It is barely legible at web sizes, but check it against the printed labe
 | `public/media/chai-pour.mp4` (+ poster) | Chai interlude (muted autoplay loop) | Seedance 2.5, re-encoded H.264 with dense keyframes for smooth seeking |
 | `public/og-image.jpg` | Social preview card | Hero still life and the cream logo |
 
+## Healthy Range photos
+
+Supplied by the client on 17 Nov 2026 (`anai_healthy_cookies_photos`, two 1024 × 1024 PNGs per cookie) and
+processed with `tools/process_healthy_range.py path/to/anai_healthy_cookies_photos`. Each `*_hero.png` (the pouch on
+a table) becomes `healthy/<id>-pack` and the other shot becomes `healthy/<id>-scene`, at 360, 640 and 960 px. All 26
+pouch labels were checked: names, "anai Foods & Agro Pvt. Ltd." and "Healthy Range" are spelt correctly, with no
+invented fine print. `healthy/millet-scene` also fills the end tile of the grid on tablets and desktops.
+
 ## Brand files (from the catalogue)
 
 | File | Notes |

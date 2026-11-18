@@ -17,6 +17,7 @@ import Collections from './sections/Collections'
 import Contact from './sections/Contact'
 import Faq from './sections/Faq'
 import Gifting from './sections/Gifting'
+import HealthyRange from './sections/HealthyRange'
 import Hero from './sections/Hero'
 import Manifesto from './sections/Manifesto'
 import WhyAnai from './sections/WhyAnai'
@@ -69,6 +70,7 @@ export default function App() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <Collections />
+        <HealthyRange />
         <ChaiInterlude />
         <Gifting />
         <WhyAnai />

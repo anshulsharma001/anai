@@ -148,6 +148,266 @@
       1044
     ]
   },
+  "healthy/atta-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/atta-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/bajra-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/bajra-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/besan-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/besan-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/gud-chana-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/gud-chana-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/gur-atta-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/gur-atta-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/jaggery-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/jaggery-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/jowar-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/jowar-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/millet-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/millet-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/multigrain-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/multigrain-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/oats-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/oats-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/ragi-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/ragi-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/sattu-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/sattu-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/whole-wheat-pack": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
+  "healthy/whole-wheat-scene": {
+    "generated": true,
+    "height": 1024,
+    "width": 1024,
+    "widths": [
+      360,
+      640,
+      960
+    ]
+  },
   "lifestyle/cookie-stage": {
     "generated": true,
     "height": 1744,

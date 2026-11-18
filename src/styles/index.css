@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
-/* Wide and tall enough for the layered hero stage; shorter or narrower screens get the stacked hero. */
-@custom-variant stage (@media (width >= 80rem) and (height >= 50rem));
+/* Layered hero stage (with the floating cookies and nuts) from 1300 × 700 up; smaller screens get the stacked hero.
+   stage-short covers the shorter stage screens (700–819 px tall, e.g. laptops with browser toolbars), where the
+   copy block is laid out wider and shorter so it never meets the headline. */
+@custom-variant stage (@media (width >= 81.25rem) and (height >= 43.75rem));
+@custom-variant stage-short (@media (width >= 81.25rem) and (height >= 43.75rem) and (height < 51.25rem));
 
 /* ------------------------------------------------------------------
    Design tokens — palette from the Anai brand identity sheet.
@@ -230,9 +233,15 @@ html.lenis body {
     }
   }
 
-  @media (width >= 80rem) and (height >= 50rem) {
+  @media (width >= 81.25rem) and (height >= 43.75rem) {
     .display-stage {
       font-size: min(8.4vw, 15.5vh, 9.5rem);
+    }
+  }
+
+  @media (width >= 81.25rem) and (height >= 43.75rem) and (height < 51.25rem) {
+    .display-stage {
+      font-size: min(8vw, 13.5vh);
     }
   }
 

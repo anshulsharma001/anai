@@ -35,10 +35,11 @@ export function whatsappHref(text = 'Hello Anai, I would like to know more about
   return `https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(text)}`
 }
 
-// Same order as the current site (anaifoodsandagro.com).
+// Same order as the current site (anaifoodsandagro.com), with the Healthy Range (added 17 Nov 2026) after Collection.
 export const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'products', label: 'Collection' },
+  { id: 'healthy', label: 'Healthy Range' },
   { id: 'gifting', label: 'Gift Hampers' },
   { id: 'why', label: 'Why Anai' },
   { id: 'story', label: 'Our Story' },

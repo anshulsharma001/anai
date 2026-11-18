@@ -10,7 +10,7 @@ import { whatsappEnquiryLink } from '../lib/enquiry'
 import { gsap, MOTION_OK, useGSAP } from '../lib/gsap'
 import { introDone } from '../lib/intro'
 
-const STAGE = '(min-width: 80rem) and (min-height: 50rem)'
+const STAGE = '(min-width: 81.25rem) and (min-height: 43.75rem)'
 
 const headline = [
   { words: ['Thoughtfully', 'baked.'], className: 'text-cream' },
@@ -49,7 +49,7 @@ const floats = [
   },
   {
     key: 'generated/butter-round',
-    place: 'left-[33%] top-[82%] w-[10vw] blur-[3px]',
+    place: 'left-[33%] top-[82%] w-[10vw] blur-[3px] stage-short:left-[47%] stage-short:top-[80%] stage-short:w-[8vw]',
     depth: 80,
     travel: -420,
     spin: -30,
@@ -227,7 +227,7 @@ export default function Hero() {
           className="pointer-events-none absolute left-0 top-0 z-0 size-[44rem] rounded-full bg-[radial-gradient(closest-side,rgb(226_180_103/0.12),transparent)] opacity-0"
         />
 
-        <div className="relative z-[28] px-5 pt-40 text-center md:pt-44 stage:pt-[max(9.5rem,18vh)]">
+        <div className="relative z-[28] px-5 pt-40 text-center md:pt-44 stage:pt-[max(9.5rem,18vh)] stage-short:pt-[8.25rem]">
           <p data-hero-eyebrow className="eyebrow justify-center text-amber-soft">
             <span aria-hidden="true" className="h-px w-8 bg-current opacity-60 sm:w-12" />
             <span>
@@ -235,7 +235,7 @@ export default function Hero() {
             </span>
             <span aria-hidden="true" className="h-px w-8 bg-current opacity-60 sm:w-12" />
           </p>
-          <h1 id="hero-title" data-hero-title className="display-stage mx-auto mt-7 max-w-[92rem]">
+          <h1 id="hero-title" data-hero-title className="display-stage mx-auto mt-7 max-w-[92rem] stage-short:mt-5">
             <span className="sr-only">Thoughtfully baked. Beautifully shared.</span>
             <span aria-hidden="true" className="block">
               {headline.map((line) => (
@@ -262,13 +262,19 @@ export default function Hero() {
 
         <div
           data-hero-copy-block
-          className="relative z-40 mx-auto mt-9 max-w-5xl px-5 text-center stage:absolute stage:bottom-[max(2.5rem,6vh)] stage:left-[clamp(1.25rem,5vw,4.5rem)] stage:mx-0 stage:mt-0 stage:w-[20rem] stage:px-0 stage:text-left"
+          className="relative z-40 mx-auto mt-9 max-w-5xl px-5 text-center stage:absolute stage:bottom-[max(2.5rem,6vh)] stage:left-[clamp(1.25rem,5vw,4.5rem)] stage:mx-0 stage:mt-0 stage:w-[20rem] stage:px-0 stage:text-left stage-short:bottom-[max(1.75rem,4vh)] stage-short:w-[34rem]"
         >
-          <p data-hero-copy className="body-copy mx-auto max-w-2xl text-sand stage:mx-0">
+          <p
+            data-hero-copy
+            className="body-copy mx-auto max-w-2xl text-sand stage:mx-0 stage-short:max-w-md stage-short:text-[0.95rem] stage-short:leading-relaxed"
+          >
             Crisp, buttery cookies for every budget — in everyday trays, family jars, premium gift boxes and
             tulle-wrapped hampers.
           </p>
-          <p data-hero-copy className="mt-4 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-amber-soft">
+          <p
+            data-hero-copy
+            className="mt-4 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-amber-soft stage-short:mt-3"
+          >
             {[
               `${products.length} products`,
               `${categories.length} collections`,
@@ -286,7 +292,7 @@ export default function Hero() {
           </p>
           <div
             data-hero-copy
-            className="mx-auto mt-7 flex flex-col items-stretch gap-3 sm:max-w-sm lg:max-w-none lg:flex-row lg:justify-center stage:mx-0 stage:flex-col stage:items-stretch [&>a]:whitespace-nowrap"
+            className="mx-auto mt-7 flex flex-col items-stretch gap-3 sm:max-w-sm lg:max-w-none lg:flex-row lg:justify-center stage:mx-0 stage:flex-col stage:items-stretch stage-short:mt-5 stage-short:flex-row stage-short:flex-wrap stage-short:justify-start stage-short:gap-2.5 [&>a]:whitespace-nowrap stage-short:[&>a]:min-h-11 stage-short:[&>a]:px-4 stage-short:[&>a]:text-[0.68rem] stage-short:[&>a]:tracking-[0.14em] stage-short:[&>a.btn-outline]:bg-roast/80"
           >
             <Button href="#products">Explore Our Collection</Button>
             <Button variant="outline" whatsapp {...whatsappEnquiryLink({ bulk: true })}>

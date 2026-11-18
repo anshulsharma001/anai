@@ -1,4 +1,5 @@
 import { company, whatsappHref } from '../data/brand'
+import { healthyById, healthyRange } from '../data/healthyRange'
 import { categoriesById, productsById, productsInCategory } from '../data/products'
 
 /*
@@ -58,13 +59,21 @@ export function enquiryWhatsApp(values) {
   return whatsappHref(enquiryText(values))
 }
 
-/** Message for one-tap enquiries from product, collection, gifting and bulk buttons. */
-export function quickEnquiryText({ products = [], categoryId, gifting = false, bulk = false } = {}) {
+/**
+ * Message for one-tap enquiries from product, collection, gifting and bulk buttons.
+ * `healthy` is a Healthy Range cookie id, or `true` for the whole range.
+ */
+export function quickEnquiryText({ products = [], categoryId, healthy, gifting = false, bulk = false } = {}) {
   const category = categoryId ? categoriesById[categoryId] : null
   const items = productLines(products)
   const lines = [`Hello ${company.shortName} team,`, '']
 
-  if (category) {
+  if (healthy === true) {
+    const names = healthyRange.map((item) => item.name.replace(/ Cookies$/, ''))
+    lines.push(`I would like to enquire about your Healthy Range cookies (${names.join(', ')}).`)
+  } else if (healthyById[healthy]) {
+    lines.push(`I would like to enquire about ${healthyById[healthy].name} (Healthy Range).`)
+  } else if (category) {
     const names = productsInCategory(category.id).map((product) => product.name)
     lines.push(`I would like to enquire about your ${category.name} (${names.join(', ')}).`)
   } else if (items.length === 1) lines.push(`I would like to enquire about ${items[0]}.`)

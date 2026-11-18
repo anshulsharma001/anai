@@ -221,9 +221,12 @@ export default function Navbar() {
         hidden
         data-lenis-prevent
         aria-label="Mobile"
-        className="on-dark grain fixed inset-0 z-0 overflow-y-auto bg-brown-deep xl:hidden"
+        className="on-dark grain fixed inset-0 z-0 overflow-y-auto overscroll-contain bg-brown-deep xl:hidden"
       >
-        <div className="container-site flex min-h-full flex-col pb-10 pt-36">
+        {/* Fits one screen on phones held upright: link size and spacing follow the screen height, and the menu
+            starts just under the header bar (its height is published as --header-offset). It only scrolls on very
+            short screens, such as a phone turned sideways. */}
+        <div className="container-site flex min-h-full flex-col pb-[max(1rem,env(safe-area-inset-bottom))] pt-[calc(var(--header-offset,7.75rem)+0.5rem)]">
           <ul className="flex flex-col">
             {navLinks.map((link, index) => (
               <li key={link.id} className="overflow-hidden border-b border-cream/10">
@@ -232,28 +235,31 @@ export default function Navbar() {
                   href={`#${link.id}`}
                   onClick={(event) => goTo(event, link.id)}
                   aria-current={active === link.id ? 'location' : undefined}
-                  className="flex items-baseline gap-5 py-4 font-display text-[2.4rem] leading-none text-cream sm:text-5xl"
+                  className="flex items-baseline gap-4 py-[clamp(0.35rem,1.2vh,0.8rem)] font-display text-[clamp(1.05rem,2.8vh,1.6rem)] leading-tight text-cream"
                 >
-                  <span className="font-sans text-xs tracking-[0.2em] text-amber-soft">0{index + 1}</span>
+                  <span className="w-5 flex-none font-sans text-[0.62rem] tracking-[0.2em] text-amber-soft">
+                    0{index + 1}
+                  </span>
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <div data-menu-item className="mt-auto flex flex-col gap-5 pt-12">
-            <Button {...whatsappEnquiryLink()} whatsapp onClick={() => setOpen(false)} className="w-full">
+          <div data-menu-item className="mt-auto flex flex-col gap-2.5 pt-5">
+            <Button {...whatsappEnquiryLink()} whatsapp size="sm" onClick={() => setOpen(false)} className="w-full">
               Enquire Now
             </Button>
             <Button
               href={catalogue.href}
               download={catalogue.fileName}
               variant="outline"
+              size="sm"
               icon={Download}
               className="w-full"
             >
               Download Catalogue (PDF)
             </Button>
-            <div className="flex flex-col gap-3 text-sm text-sand">
+            <div className="mt-1.5 flex flex-col gap-1.5 text-[0.8rem] text-sand [@media(max-height:35rem)]:hidden">
               <a href={company.phoneHref} className="inline-flex items-center gap-3">
                 <Phone aria-hidden="true" className="size-4 text-amber-soft" strokeWidth={1.5} />
                 {company.phoneDisplay}
