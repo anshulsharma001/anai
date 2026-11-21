@@ -104,6 +104,7 @@ export const faqs = [
   {
     question: 'Where do you deliver?',
     answer:
-      'We dispatch from Aonla, Bareilly, Uttar Pradesh. Share your delivery location on WhatsApp and we will confirm the options and timing.',
+      // The real location: the office address on record (Laxmi Nagar, East Delhi, Delhi - 110092).
+      `We dispatch from ${company.address.lines.slice(1).join(', ')}. Share your delivery location on WhatsApp and we will confirm the options and timing.`,
   },
 ]
